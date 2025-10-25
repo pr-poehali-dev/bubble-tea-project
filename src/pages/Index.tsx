@@ -561,7 +561,7 @@ const Index = () => {
                 <Icon name="Truck" size={32} className="text-primary flex-shrink-0" />
                 <div>
                   <h3 className="text-xl font-display font-bold mb-2">Бесплатная доставка</h3>
-                  <p className="text-foreground/80">При заказе от 1000₽ доставка бесплатная в пределах 3 км</p>
+                  <p className="text-foreground/80">При заказе от 600₽ доставка бесплатная в пределах 6 км</p>
                 </div>
               </div>
 

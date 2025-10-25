@@ -328,7 +328,7 @@ const Index = () => {
                 <Card className="bg-card/50 backdrop-blur border-primary/30 neon-border hover:scale-105 transition-transform">
                   <CardContent className="pt-6 text-center space-y-3">
                     <Icon name="CircleDot" size={48} className="mx-auto text-accent animate-glow-pulse" />
-                    <h3 className="font-display font-semibold text-xl">Специализация</h3>
+                    <h3 className="font-display font-semibold text-xl">Для вас:</h3>
                     <p className="text-foreground/70">Bubble Tea с тапиокой</p>
                   </CardContent>
                 </Card>

@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Icon from '@/components/ui/icon';
+import MobileMenu from '@/components/MobileMenu';
 
 interface DrinkSize {
   size: string;
@@ -16,6 +17,7 @@ interface Drink {
   description: string;
   sizes: DrinkSize[];
   category: string;
+  image?: string;
 }
 
 interface Addon {
@@ -60,41 +62,41 @@ const toppings = [
 ];
 
 const menu: Drink[] = [
-  { name: 'Эспрессо', description: 'Классический крепкий кофе', sizes: [{ size: '30мл', price: 150 }], category: 'coffee' },
-  { name: 'Американо', description: 'Эспрессо с горячей водой', sizes: [{ size: '30мл', price: 260 }, { size: '200мл', price: 300 }, { size: '300мл', price: 330 }], category: 'coffee' },
-  { name: 'Капучино', description: 'Эспрессо с молочной пенкой', sizes: [{ size: '30мл', price: 290 }, { size: '200мл', price: 330 }, { size: '300мл', price: 380 }], category: 'coffee' },
-  { name: 'Латте', description: 'Эспрессо с большим количеством молока', sizes: [{ size: '200мл', price: 330 }, { size: '300мл', price: 380 }], category: 'coffee' },
-  { name: 'Раф', description: 'Кофе со сливками и ванильным сиропом', sizes: [{ size: '200мл', price: 380 }, { size: '300мл', price: 430 }], category: 'coffee' },
-  { name: 'Флэт-уайт', description: 'Двойной эспрессо с микропенкой', sizes: [{ size: '30мл', price: 350 }], category: 'coffee' },
+  { name: 'Эспрессо', description: 'Классический крепкий кофе', sizes: [{ size: '30мл', price: 150 }], category: 'coffee', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/03fb218c-49dc-440b-bd82-1e3d19f1eaf8.jpg' },
+  { name: 'Американо', description: 'Эспрессо с горячей водой', sizes: [{ size: '30мл', price: 260 }, { size: '200мл', price: 300 }, { size: '300мл', price: 330 }], category: 'coffee', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/03fb218c-49dc-440b-bd82-1e3d19f1eaf8.jpg' },
+  { name: 'Капучино', description: 'Эспрессо с молочной пенкой', sizes: [{ size: '30мл', price: 290 }, { size: '200мл', price: 330 }, { size: '300мл', price: 380 }], category: 'coffee', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/03fb218c-49dc-440b-bd82-1e3d19f1eaf8.jpg' },
+  { name: 'Латте', description: 'Эспрессо с большим количеством молока', sizes: [{ size: '200мл', price: 330 }, { size: '300мл', price: 380 }], category: 'coffee', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/03fb218c-49dc-440b-bd82-1e3d19f1eaf8.jpg' },
+  { name: 'Раф', description: 'Кофе со сливками и ванильным сиропом', sizes: [{ size: '200мл', price: 380 }, { size: '300мл', price: 430 }], category: 'coffee', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/03fb218c-49dc-440b-bd82-1e3d19f1eaf8.jpg' },
+  { name: 'Флэт-уайт', description: 'Двойной эспрессо с микропенкой', sizes: [{ size: '30мл', price: 350 }], category: 'coffee', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/03fb218c-49dc-440b-bd82-1e3d19f1eaf8.jpg' },
   
-  { name: 'Горячий шоколад', description: 'Насыщенный шоколадный напиток', sizes: [{ size: '200мл', price: 290 }, { size: '300мл', price: 330 }, { size: '400мл', price: 380 }], category: 'hot' },
-  { name: 'Какао', description: 'Классическое какао на молоке', sizes: [{ size: '200мл', price: 290 }, { size: '300мл', price: 330 }, { size: '400мл', price: 380 }], category: 'hot' },
-  { name: 'Матча-латте', description: 'Японский зеленый чай с молоком', sizes: [{ size: '200мл', price: 290 }, { size: '300мл', price: 330 }, { size: '400мл', price: 380 }], category: 'hot' },
-  { name: 'Глинтвейн', description: 'Горячий напиток с пряностями', sizes: [{ size: '300мл', price: 390 }, { size: '400мл', price: 440 }], category: 'hot' },
+  { name: 'Горячий шоколад', description: 'Насыщенный шоколадный напиток', sizes: [{ size: '200мл', price: 290 }, { size: '300мл', price: 330 }, { size: '400мл', price: 380 }], category: 'hot', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/03fb218c-49dc-440b-bd82-1e3d19f1eaf8.jpg' },
+  { name: 'Какао', description: 'Классическое какао на молоке', sizes: [{ size: '200мл', price: 290 }, { size: '300мл', price: 330 }, { size: '400мл', price: 380 }], category: 'hot', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/03fb218c-49dc-440b-bd82-1e3d19f1eaf8.jpg' },
+  { name: 'Матча-латте', description: 'Японский зеленый чай с молоком', sizes: [{ size: '200мл', price: 290 }, { size: '300мл', price: 330 }, { size: '400мл', price: 380 }], category: 'hot', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/03fb218c-49dc-440b-bd82-1e3d19f1eaf8.jpg' },
+  { name: 'Глинтвейн', description: 'Горячий напиток с пряностями', sizes: [{ size: '300мл', price: 390 }, { size: '400мл', price: 440 }], category: 'hot', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/03fb218c-49dc-440b-bd82-1e3d19f1eaf8.jpg' },
   
-  { name: 'Раф Соленая фисташка', description: 'Нежный раф с фисташковым вкусом', sizes: [{ size: '300мл', price: 400 }, { size: '400мл', price: 450 }], category: 'signature' },
-  { name: 'Раф Халва', description: 'Восточная сладость в кофейном напитке', sizes: [{ size: '300мл', price: 400 }, { size: '400мл', price: 450 }], category: 'signature' },
-  { name: 'Раф Арахисовый', description: 'Кремовый раф с арахисовой пастой', sizes: [{ size: '300мл', price: 400 }, { size: '400мл', price: 450 }], category: 'signature' },
-  { name: 'Латте Взрывная карамель', description: 'Латте с карамельными нотками', sizes: [{ size: '300мл', price: 380 }, { size: '400мл', price: 430 }], category: 'signature' },
-  { name: 'Латте Белый шоколад', description: 'Нежный латте с белым шоколадом', sizes: [{ size: '300мл', price: 380 }, { size: '400мл', price: 430 }], category: 'signature' },
+  { name: 'Раф Соленая фисташка', description: 'Нежный раф с фисташковым вкусом', sizes: [{ size: '300мл', price: 400 }, { size: '400мл', price: 450 }], category: 'signature', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/03fb218c-49dc-440b-bd82-1e3d19f1eaf8.jpg' },
+  { name: 'Раф Халва', description: 'Восточная сладость в кофейном напитке', sizes: [{ size: '300мл', price: 400 }, { size: '400мл', price: 450 }], category: 'signature', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/03fb218c-49dc-440b-bd82-1e3d19f1eaf8.jpg' },
+  { name: 'Раф Арахисовый', description: 'Кремовый раф с арахисовой пастой', sizes: [{ size: '300мл', price: 400 }, { size: '400мл', price: 450 }], category: 'signature', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/03fb218c-49dc-440b-bd82-1e3d19f1eaf8.jpg' },
+  { name: 'Латте Взрывная карамель', description: 'Латте с карамельными нотками', sizes: [{ size: '300мл', price: 380 }, { size: '400мл', price: 430 }], category: 'signature', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/03fb218c-49dc-440b-bd82-1e3d19f1eaf8.jpg' },
+  { name: 'Латте Белый шоколад', description: 'Нежный латте с белым шоколадом', sizes: [{ size: '300мл', price: 380 }, { size: '400мл', price: 430 }], category: 'signature', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/03fb218c-49dc-440b-bd82-1e3d19f1eaf8.jpg' },
   
-  { name: 'БаблТи Кофейный', description: 'Кофейный напиток с жемчужинами тапиоки', sizes: [{ size: '300мл', price: 400 }, { size: '400мл', price: 450 }], category: 'bubble' },
-  { name: 'БаблТи Матча', description: 'Зеленый чай матча с тапиокой', sizes: [{ size: '300мл', price: 400 }, { size: '400мл', price: 450 }], category: 'bubble' },
-  { name: 'БаблТи Матча-Клубника', description: 'Сочетание матчи и клубники', sizes: [{ size: '300мл', price: 440 }, { size: '400мл', price: 490 }], category: 'bubble' },
-  { name: 'БаблТи Синнабон', description: 'Вкус знаменитой булочки с корицей', sizes: [{ size: '300мл', price: 440 }, { size: '400мл', price: 490 }], category: 'bubble' },
-  { name: 'БаблТи Тропик', description: 'Тропические фрукты с тапиокой', sizes: [{ size: '300мл', price: 440 }, { size: '400мл', price: 490 }], category: 'bubble' },
-  { name: 'БаблТи Малиновый пирог', description: 'Сладкий малиновый вкус', sizes: [{ size: '300мл', price: 440 }, { size: '400мл', price: 490 }], category: 'bubble' },
-  { name: 'БаблТи Шоколад', description: 'Шоколадный напиток с тапиокой', sizes: [{ size: '300мл', price: 440 }, { size: '400мл', price: 490 }], category: 'bubble' },
-  { name: 'БаблТи Попкорн', description: 'Необычный попкорновый вкус', sizes: [{ size: '300мл', price: 440 }, { size: '400мл', price: 490 }], category: 'bubble' },
-  { name: 'БаблТи Соленая карамель', description: 'Соленая карамель с жемчужинами', sizes: [{ size: '300мл', price: 440 }, { size: '400мл', price: 490 }], category: 'bubble' },
+  { name: 'БаблТи Кофейный', description: 'Кофейный напиток с жемчужинами тапиоки', sizes: [{ size: '300мл', price: 400 }, { size: '400мл', price: 450 }], category: 'bubble', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/ab78045f-50d8-4256-a1eb-580b08080212.jpg' },
+  { name: 'БаблТи Матча', description: 'Зеленый чай матча с тапиокой', sizes: [{ size: '300мл', price: 400 }, { size: '400мл', price: 450 }], category: 'bubble', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/ab78045f-50d8-4256-a1eb-580b08080212.jpg' },
+  { name: 'БаблТи Матча-Клубника', description: 'Сочетание матчи и клубники', sizes: [{ size: '300мл', price: 440 }, { size: '400мл', price: 490 }], category: 'bubble', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/ab78045f-50d8-4256-a1eb-580b08080212.jpg' },
+  { name: 'БаблТи Синнабон', description: 'Вкус знаменитой булочки с корицей', sizes: [{ size: '300мл', price: 440 }, { size: '400мл', price: 490 }], category: 'bubble', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/ab78045f-50d8-4256-a1eb-580b08080212.jpg' },
+  { name: 'БаблТи Тропик', description: 'Тропические фрукты с тапиокой', sizes: [{ size: '300мл', price: 440 }, { size: '400мл', price: 490 }], category: 'bubble', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/ab78045f-50d8-4256-a1eb-580b08080212.jpg' },
+  { name: 'БаблТи Малиновый пирог', description: 'Сладкий малиновый вкус', sizes: [{ size: '300мл', price: 440 }, { size: '400мл', price: 490 }], category: 'bubble', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/ab78045f-50d8-4256-a1eb-580b08080212.jpg' },
+  { name: 'БаблТи Шоколад', description: 'Шоколадный напиток с тапиокой', sizes: [{ size: '300мл', price: 440 }, { size: '400мл', price: 490 }], category: 'bubble', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/ab78045f-50d8-4256-a1eb-580b08080212.jpg' },
+  { name: 'БаблТи Попкорн', description: 'Необычный попкорновый вкус', sizes: [{ size: '300мл', price: 440 }, { size: '400мл', price: 490 }], category: 'bubble', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/ab78045f-50d8-4256-a1eb-580b08080212.jpg' },
+  { name: 'БаблТи Соленая карамель', description: 'Соленая карамель с жемчужинами', sizes: [{ size: '300мл', price: 440 }, { size: '400мл', price: 490 }], category: 'bubble', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/ab78045f-50d8-4256-a1eb-580b08080212.jpg' },
   
-  { name: 'Ананас-маракуйя', description: 'Освежающий фруктовый чай', sizes: [{ size: '300мл', price: 330 }, { size: '400мл', price: 360 }], category: 'functional' },
-  { name: 'Малиновый', description: 'Витаминный напиток с малиной', sizes: [{ size: '300мл', price: 390 }, { size: '400мл', price: 440 }], category: 'functional' },
-  { name: 'Имбирный', description: 'Согревающий имбирный чай', sizes: [{ size: '300мл', price: 390 }, { size: '400мл', price: 440 }], category: 'functional' },
-  { name: 'Облепиховый', description: 'Полезный облепиховый напиток', sizes: [{ size: '300мл', price: 390 }, { size: '400мл', price: 440 }], category: 'functional' },
-  { name: 'Смузи ягодный', description: 'Микс из свежих ягод', sizes: [{ size: '300мл', price: 330 }, { size: '400мл', price: 360 }], category: 'functional' },
-  { name: 'Смузи мята-маракуйя', description: 'Освежающий мятный смузи', sizes: [{ size: '300мл', price: 330 }, { size: '400мл', price: 360 }], category: 'functional' },
-  { name: 'Смузи ананас-манго', description: 'Тропический микс фруктов', sizes: [{ size: '300мл', price: 330 }, { size: '400мл', price: 360 }], category: 'functional' }
+  { name: 'Ананас-маракуйя', description: 'Освежающий фруктовый чай', sizes: [{ size: '300мл', price: 330 }, { size: '400мл', price: 360 }], category: 'functional', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/f8739cab-08ca-47a9-98e3-52a679d31130.jpg' },
+  { name: 'Малиновый', description: 'Витаминный напиток с малиной', sizes: [{ size: '300мл', price: 390 }, { size: '400мл', price: 440 }], category: 'functional', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/f8739cab-08ca-47a9-98e3-52a679d31130.jpg' },
+  { name: 'Имбирный', description: 'Согревающий имбирный чай', sizes: [{ size: '300мл', price: 390 }, { size: '400мл', price: 440 }], category: 'functional', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/f8739cab-08ca-47a9-98e3-52a679d31130.jpg' },
+  { name: 'Облепиховый', description: 'Полезный облепиховый напиток', sizes: [{ size: '300мл', price: 390 }, { size: '400мл', price: 440 }], category: 'functional', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/f8739cab-08ca-47a9-98e3-52a679d31130.jpg' },
+  { name: 'Смузи ягодный', description: 'Микс из свежих ягод', sizes: [{ size: '300мл', price: 330 }, { size: '400мл', price: 360 }], category: 'functional', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/f8739cab-08ca-47a9-98e3-52a679d31130.jpg' },
+  { name: 'Смузи мята-маракуйя', description: 'Освежающий мятный смузи', sizes: [{ size: '300мл', price: 330 }, { size: '400мл', price: 360 }], category: 'functional', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/f8739cab-08ca-47a9-98e3-52a679d31130.jpg' },
+  { name: 'Смузи ананас-манго', description: 'Тропический микс фруктов', sizes: [{ size: '300мл', price: 330 }, { size: '400мл', price: 360 }], category: 'functional', image: 'https://cdn.poehali.dev/projects/46a07f7a-2301-485d-8288-a2bbdfabaab7/files/f8739cab-08ca-47a9-98e3-52a679d31130.jpg' }
 ];
 
 const Index = () => {
@@ -104,6 +106,7 @@ const Index = () => {
   const [selectedAddons, setSelectedAddons] = useState<Addon[]>([]);
   const [order, setOrder] = useState<OrderItem[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const openDrinkModal = (drink: Drink) => {
     setSelectedDrink(drink);
@@ -199,11 +202,28 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0d0415] via-[#1a0a2e] to-[#16001e]">
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        currentSection={currentSection}
+        onNavigate={setCurrentSection}
+      />
+
       <nav className="sticky top-0 z-50 bg-card/80 backdrop-blur-lg border-b border-primary/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-2">
-              <div className="text-3xl font-display font-bold neon-text">BUBBLE</div>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden mr-2"
+                onClick={() => setIsMobileMenuOpen(true)}
+              >
+                <Icon name="Menu" size={24} />
+              </Button>
+              <button onClick={() => setCurrentSection('home')} className="text-3xl font-display font-bold neon-text cursor-pointer">
+                BUBBLE
+              </button>
             </div>
             
             <div className="hidden md:flex space-x-6">
@@ -226,16 +246,30 @@ const Index = () => {
               ))}
             </div>
 
-            <Button
-              onClick={() => setCurrentSection('menu')}
-              className="relative bg-gradient-to-r from-primary to-secondary hover:opacity-90 neon-glow"
-            >
-              <Icon name="ShoppingCart" size={20} className="mr-2" />
-              Заказать
-              {order.length > 0 && (
-                <Badge className="absolute -top-2 -right-2 bg-accent">{order.length}</Badge>
-              )}
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="hidden sm:flex border-accent/50 hover:bg-accent/10"
+                asChild
+              >
+                <a href="https://eda.yandex.ru/restaurant/bubble_coffee" target="_blank" rel="noopener noreferrer">
+                  <Icon name="ShoppingBag" size={16} className="mr-2" />
+                  Яндекс.Еда
+                </a>
+              </Button>
+              <Button
+                onClick={() => setCurrentSection('menu')}
+                size="sm"
+                className="relative bg-gradient-to-r from-primary to-secondary hover:opacity-90 neon-glow"
+              >
+                <Icon name="ShoppingCart" size={16} className="sm:mr-2" />
+                <span className="hidden sm:inline">Заказать</span>
+                {order.length > 0 && (
+                  <Badge className="absolute -top-2 -right-2 bg-accent text-xs">{order.length}</Badge>
+                )}
+              </Button>
+            </div>
           </div>
         </div>
       </nav>
@@ -332,19 +366,30 @@ const Index = () => {
                           }`}
                           onClick={() => openDrinkModal(drink)}
                         >
-                          <div className="flex justify-between items-start">
-                            <div className="flex-1">
-                              <h3 className="text-xl font-display font-semibold mb-2">{drink.name}</h3>
-                              <p className="text-sm text-foreground/70 mb-2">{drink.description}</p>
-                              {drink.sizes.length > 1 && (
-                                <p className="text-xs text-primary/80">
-                                  {drink.sizes.map(s => `${s.size}: ${s.price}₽`).join(' | ')}
-                                </p>
-                              )}
+                          <div className="flex gap-4">
+                            {drink.image && (
+                              <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 neon-border">
+                                <img
+                                  src={drink.image}
+                                  alt={drink.name}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                            )}
+                            <div className="flex-1 flex justify-between items-start">
+                              <div className="flex-1">
+                                <h3 className="text-xl font-display font-semibold mb-2">{drink.name}</h3>
+                                <p className="text-sm text-foreground/70 mb-2">{drink.description}</p>
+                                {drink.sizes.length > 1 && (
+                                  <p className="text-xs text-primary/80">
+                                    {drink.sizes.map(s => `${s.size}: ${s.price}₽`).join(' | ')}
+                                  </p>
+                                )}
+                              </div>
+                              <Badge className="ml-4 bg-gradient-to-r from-primary to-accent text-white px-4 py-2">
+                                {drink.sizes.length === 1 ? `${drink.sizes[0].price}₽` : `от ${drink.sizes[0].price}₽`}
+                              </Badge>
                             </div>
-                            <Badge className="ml-4 bg-gradient-to-r from-primary to-accent text-white px-4 py-2">
-                              {drink.sizes.length === 1 ? `${drink.sizes[0].price}₽` : `от ${drink.sizes[0].price}₽`}
-                            </Badge>
                           </div>
                         </div>
                       ))}
@@ -436,25 +481,73 @@ const Index = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <h2 className="text-4xl font-display font-bold text-center mb-12 neon-text">Акции</h2>
           
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
             <Card className="bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur border-primary/30 neon-border hover:scale-105 transition-transform">
               <CardContent className="p-6">
-                <Icon name="Gift" size={48} className="text-primary mb-4" />
+                <Icon name="Clock" size={48} className="text-primary mb-4" />
                 <h3 className="text-2xl font-display font-bold mb-3">Счастливые часы</h3>
-                <p className="text-foreground/80 mb-4">С 14:00 до 16:00 скидка 20% на все БаблТи</p>
+                <p className="text-foreground/80 mb-4">С 08:00 до 12:00 скидка 20% на всё меню!</p>
                 <Badge className="bg-accent">Каждый день</Badge>
               </CardContent>
             </Card>
 
             <Card className="bg-gradient-to-br from-accent/20 to-primary/20 backdrop-blur border-accent/30 neon-border hover:scale-105 transition-transform">
               <CardContent className="p-6">
-                <Icon name="Heart" size={48} className="text-accent mb-4" />
-                <h3 className="text-2xl font-display font-bold mb-3">Второй в подарок</h3>
-                <p className="text-foreground/80 mb-4">При покупке 2х напитков — третий БаблТи в подарок</p>
-                <Badge className="bg-primary">Выходные</Badge>
+                <Icon name="Gift" size={48} className="text-accent mb-4" />
+                <h3 className="text-2xl font-display font-bold mb-3">Каждая 7-я в подарок</h3>
+                <p className="text-foreground/80 mb-4">Каждая 7-я кружка кофе 300мл (капучино / латте / раф / американо / флэт-уайт) в подарок!</p>
+                <Badge className="bg-primary">Постоянно</Badge>
               </CardContent>
             </Card>
           </div>
+
+          <Card className="bg-gradient-to-br from-secondary/20 to-accent/20 backdrop-blur border-secondary/30 neon-border">
+            <CardContent className="p-8 text-center">
+              <Icon name="Sparkles" size={64} className="mx-auto text-accent mb-6" />
+              <h3 className="text-3xl font-display font-bold mb-4">Подписывайтесь на наши соцсети!</h3>
+              <p className="text-foreground/80 mb-6 max-w-lg mx-auto">
+                Там всегда проходят самые вкусные акции и все первые нововведения можно узнать там
+              </p>
+              
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-primary/50 hover:bg-primary/10 neon-border"
+                  asChild
+                >
+                  <a href="https://t.me/bubble_coffee_msk" target="_blank" rel="noopener noreferrer">
+                    <Icon name="Send" size={24} className="mr-2" />
+                    Telegram
+                  </a>
+                </Button>
+                
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-accent/50 hover:bg-accent/10 neon-border"
+                  asChild
+                >
+                  <a href="https://www.instagram.com/bubble.coffee_rus" target="_blank" rel="noopener noreferrer">
+                    <Icon name="Instagram" size={24} className="mr-2" />
+                    Instagram
+                  </a>
+                </Button>
+                
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-secondary/50 hover:bg-secondary/10 neon-border"
+                  asChild
+                >
+                  <a href="tel:+79600001410">
+                    <Icon name="Phone" size={24} className="mr-2" />
+                    +7 960 000 1410
+                  </a>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       )}
 
@@ -500,7 +593,7 @@ const Index = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <h2 className="text-4xl font-display font-bold text-center mb-12 neon-text">Контакты</h2>
           
-          <Card className="bg-card/50 backdrop-blur border-primary/30 neon-border">
+          <Card className="bg-card/50 backdrop-blur border-primary/30 neon-border mb-6">
             <CardContent className="p-8 space-y-6">
               <div className="flex items-start space-x-4">
                 <Icon name="MapPin" size={32} className="text-primary flex-shrink-0" />
@@ -525,20 +618,61 @@ const Index = () => {
               <div className="flex items-start space-x-4">
                 <Icon name="Phone" size={32} className="text-accent flex-shrink-0" />
                 <div>
-                  <h3 className="text-xl font-display font-bold mb-2">Телефон</h3>
-                  <p className="text-foreground/80">+7 (XXX) XXX-XX-XX</p>
+                  <h3 className="text-xl font-display font-bold mb-2">Связаться с нами</h3>
+                  <a href="tel:+79600001410" className="text-foreground/80 hover:text-primary transition-colors">
+                    +7 960 000 1410
+                  </a>
                 </div>
               </div>
 
               <Separator />
 
               <div className="flex items-start space-x-4">
-                <Icon name="Instagram" size={32} className="text-primary flex-shrink-0" />
-                <div>
-                  <h3 className="text-xl font-display font-bold mb-2">Социальные сети</h3>
-                  <p className="text-foreground/80">@bubble_coffee_moscow</p>
+                <Icon name="Send" size={32} className="text-primary flex-shrink-0" />
+                <div className="flex-1">
+                  <h3 className="text-xl font-display font-bold mb-3">Социальные сети</h3>
+                  <div className="flex flex-wrap gap-3">
+                    <Button
+                      variant="outline"
+                      className="border-primary/50 hover:bg-primary/10"
+                      asChild
+                    >
+                      <a href="https://t.me/bubble_coffee_msk" target="_blank" rel="noopener noreferrer">
+                        <Icon name="Send" size={20} className="mr-2" />
+                        Telegram
+                      </a>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="border-accent/50 hover:bg-accent/10"
+                      asChild
+                    >
+                      <a href="https://www.instagram.com/bubble.coffee_rus" target="_blank" rel="noopener noreferrer">
+                        <Icon name="Instagram" size={20} className="mr-2" />
+                        Instagram
+                      </a>
+                    </Button>
+                  </div>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gradient-to-br from-accent/20 to-primary/20 backdrop-blur border-accent/30 neon-border">
+            <CardContent className="p-6 text-center">
+              <Icon name="ShoppingBag" size={48} className="mx-auto text-accent mb-4" />
+              <h3 className="text-2xl font-display font-bold mb-3">Заказать доставку</h3>
+              <p className="text-foreground/80 mb-4">Закажите наши напитки через Яндекс.Еда с доставкой на дом!</p>
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-accent to-primary neon-glow"
+                asChild
+              >
+                <a href="https://eda.yandex.ru/restaurant/bubble_coffee" target="_blank" rel="noopener noreferrer">
+                  <Icon name="ShoppingBag" size={20} className="mr-2" />
+                  Открыть в Яндекс.Еда
+                </a>
+              </Button>
             </CardContent>
           </Card>
         </div>
